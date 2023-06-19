@@ -21,6 +21,8 @@ The high level architecture is described in the picture below
 * Cloud API adaptor ([cmd/cloud-api-adaptor](./cmd/cloud-api-adaptor)) - `cloud-api-adator` implements the remote hypervisor support.
 * Agent protocol forwarder ([cmd/agent-protocol-forwarder](./cmd/agent-protocol-forwarder))
 
+
+
 ## Installation
 
 Please refer to the instructions mentioned in the following [doc](install/README.md).
