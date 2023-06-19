@@ -15,8 +15,15 @@ env:
 jobs:
   commit-message-check:
     runs-on: ubuntu-latest
+    env:
+      PR_AUTHOR: ${{ github.event.pull_request.user.login }}
     name: Commit Message Check
     steps:
+      - name: script
+        run: |
+          echo "PR author: $PR_AUTHOR"
+        shell: bash
+      
       - name: Get PR Commits
         if: ${{ !contains(github.event.pull_request.labels.*.name, 'force-skip-ci') }}
         id: "get-pr-commits"
@@ -73,7 +80,7 @@ jobs:
           post_error: ${{ env.error_msg }}
 
       - name: Check Fixes
-        if: ${{ !contains(github.event.pull_request.labels.*.name, 'force-skip-ci') && github.event.pull_request.user.login != 'dependabot[bot]' && ( success() || failure() ) }} || 
+        if: ${{ !contains(github.event.pull_request.labels.*.name, 'force-skip-ci') && github.event.pull_request.user.login != 'dependabot[bot]' && ( success() || failure() ) }} ||
         uses: tim-actions/commit-message-checker-with-regex@v0.3.1
         with:
           commits: ${{ steps.get-pr-commits.outputs.commits }}
