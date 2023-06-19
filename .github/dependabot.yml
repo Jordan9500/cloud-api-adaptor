@@ -5,7 +5,9 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm"
-    directory: "/"
+  - package-ecosystem: "gomod"
+    directory: "/webhook"
     schedule:
-      interval: "daily"
+      interval: "weekly"
+    commit-message:
+      prefix: "Webhook"
